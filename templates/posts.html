@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Posts</title> 
+{% endblock %}
+
+{% block body %}
+<br>
+<div>
+    <h1 style="display:inline">Meme </h1>
+    <a style="display:inline" class="btn btn-success float-right" href="/posts/new" >+ New Post</a>
+</div>
+    <hr>
+
+    {% for post in posts %}
+        <h2>{{ post.author }}</h2>
+        {% if post.title %}
+        <h6>{{ post.title }}</h6>  <small>{{ post.date_posted }}</small>
+        {% else %}
+            <small> Posted by Unknown on {{ post.date_posted }}</small>
+        {% endif %}
+        <br>
+        <br>
+        <img src="{{ post.content }}" width="300" height="300" alt="Not Found" onerror=this.src="https://cdn.sstatic.net/Sites/stackoverflow/img/404.svg">
+        <br>
+        <a class="btn btn-danger" href='/posts/delete/{{post.id}}'>Delete</a>
+        <a class="btn btn-primary" href='/posts/edit/{{post.id}}'>Edit</a>
+        <br>
+        <hr>
+        <br>
+    {% endfor%}
+
+{% endblock %}
