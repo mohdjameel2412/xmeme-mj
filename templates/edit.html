@@ -2,24 +2,33 @@
 
 {% block head %}
 <title>Edit Post</title> 
+<style>
+    .submit {
+        background-color: rgb(204, 0, 0);
+        color: white;
+    }
+    .submit:hover {
+        background-color: teal;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
 <h1>Edit</h1>
 
     <hr>
-    <h2>Edit:</h2>
+    
     <form action='/posts/edit/{{post.id}}' method='POST'>
         <label for="title">Name:</label>
-        <input class="form-control" type="text" name='title' id='title' value="{{ post.title }}" aria-label="Enter Title" required>
+        <input class="form-control" type="text" name='title' id='author' value="{{ post.title }}" aria-label="Enter Title" required>
         <br>
         <label for="author">Caption:</label>
-        <input class="form-control" type="text" name='author' id='author' value="{{ post.author }}" aria-label="Enter Author" required>
+        <input class="form-control" type="text" name='author' id='title' value="{{ post.author }}" aria-label="Enter Author" required>
         <br>
         <label for="content">URL:</label>
         <input  class="urlinput form-control" type="url" name="content" id="content" placeholder="Enter URL" >{{post.content}}
         <br>
-        <input type='submit' value='Save'>
+        <input class="submit" type='submit' value='Save'>
     </form>
     <hr>
 {% endblock %}

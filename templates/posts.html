@@ -1,33 +1,122 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Posts</title> 
+<link rel="stylesheet" href="/static/css/main.css">
+<title>Posts</title>
+<style>
+    body {
+        background-color: black;
+
+    }
+    .container {
+        box-sizing: content-box;
+        width: 100%;
+    }
+
+    .head {
+        color: white;
+    }
+
+    .navbar {
+        max-width: 100%;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .column {
+        float: left;
+        width: 33%;
+        padding: 0 10px;
+    }
+    .column-text {
+        margin-top: -10px ;
+        line-height: 80%;
+        
+    }
+    .column-btn {
+        margin-top: 20px;
+        display: block;
+    }
+    .column-image {
+        margin-top: 10px;
+        margin-left: 4px;
+        width: 100%;
+        display: block;
+        display: flex;
+    }
+
+    /* Remove extra left and right margins, due to padding */
+    .row {
+        margin: 0 -5px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 100%;
+            display: block;
+        
+        }
+        .column-image {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    /* Style the counter cards */
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        height: 480px;
+        margin-bottom: 5px;
+        text-align: left;
+        background-color: #f1f1f1;
+    }
+</style>
 {% endblock %}
+
 
 {% block body %}
 <br>
-<div>
-    <h1 style="display:inline">Meme </h1>
-    <a style="display:inline" class="btn btn-success float-right" href="/posts/new" >+ New Post</a>
+<div class="head">
+    <h1 style="display:inline">Meme Stream</h1>
+    <a style="display:inline" class="btn btn-success float-right" href="/posts/new">+ New Post</a>
 </div>
-    <hr>
+<br>
 
+<div class="row">
     {% for post in posts %}
-        <h2>{{ post.author }}</h2>
-        {% if post.title %}
-        <h6>{{ post.title }}</h6>  <small>{{ post.date_posted }}</small>
-        {% else %}
-            <small> Posted by Unknown on {{ post.date_posted }}</small>
-        {% endif %}
-        <br>
-        <br>
-        <img src="{{ post.content }}" width="300" height="300" alt="Not Found" onerror=this.src="https://cdn.sstatic.net/Sites/stackoverflow/img/404.svg">
-        <br>
-        <a class="btn btn-danger" href='/posts/delete/{{post.id}}'>Delete</a>
-        <a class="btn btn-primary" href='/posts/edit/{{post.id}}'>Edit</a>
-        <br>
-        <hr>
-        <br>
+    <div class="column">
+        <div class="card">
+            <div class="column-text">
+
+                <h2>{{ post.author }}</h2>
+                <h5><strong>{{ post.title }}</strong></h5>
+                <small>{{ post.date_posted }}</small>
+            </div>
+            <div class="column-image">
+                <img src="{{ post.content }}" width="320" height="290" alt="Not Found"
+                    onerror=this.src="https://cdn.sstatic.net/Sites/stackoverflow/img/404.svg">
+            </div>
+            <div class="column-btn">
+                <a class="btn btn-danger" href='/posts/delete/{{post.id}}'>Delete</a>
+                <a class="btn btn-primary" href='/posts/edit/{{post.id}}'>Edit</a>
+
+            </div>
+        </div>
+    </div>
     {% endfor%}
+</div>
+
 
 {% endblock %}

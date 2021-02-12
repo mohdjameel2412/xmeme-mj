@@ -2,23 +2,35 @@
 
 {% block head %}
 <title>New Post</title> 
+<style>
+    .submit {
+        background-color: rgb(204, 0, 0);
+        color: white;
+    }
+    .submit:hover {
+        background-color: teal;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
 
     <hr>
     <h2>Create New MEME </h2>
-    <form action='/posts' method='POST'>
-        <label for="author">Name:</label>
-        <input class="form-control" type="text" name='author' id='author' placeholder="Enter Name" aria-label="Enter Title" required>
-        <br>
-        <label for="title">Caption:</label>
-        <input class="form-control" type="text" name='title' id='title' placeholder="Enter Caption" aria-label="Enter Author" required>
-        <br>
-        <label for="content">URL:</label>
-        <input  class="urlinput form-control" type="url" name="content" id="content" placeholder="Enter URL">
-        <br>
-        <input type='submit' value='Post'>
-    </form>
+    <div>
+        <form action='/posts' method='POST'>
+            <label for="author">Name:</label>
+            <input class="form-control" type="text" name='author' id='author' placeholder="Enter Name" aria-label="Enter Title" required>
+            <br>
+            <label for="title">Caption:</label>
+            <input class="form-control" type="text" name='title' id='title' placeholder="Enter Caption" aria-label="Enter Author" required>
+            <br>
+            <label for="content">URL:</label>
+            <input  class="urlinput form-control" type="url" name="content" id="content" placeholder="Enter URL">
+            <br>
+            <input class="submit" type='submit' value='Post'>
+        </form>
+    </div>
+
     <hr>
 {% endblock %}
